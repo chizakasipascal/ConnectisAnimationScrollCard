@@ -126,6 +126,7 @@ class _ConnectisCarouselScrollCardState
     // TODO: implement initState
     widget.updatePositionCallBack = updatePosition;
     widget.controller = PageController();
+    print('init page controller');
     super.initState();
   }
 
