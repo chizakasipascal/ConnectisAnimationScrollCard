@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 
 typedef OnCarouselTap = Function(int);
 
-class Carousel extends StatefulWidget {
+class ConnectisCarouselScrollCard extends StatefulWidget {
   final dynamic type;
 
   ///The scroll Axis of Carousel
@@ -83,7 +83,7 @@ class Carousel extends StatefulWidget {
   @override
   GlobalKey? key;
 
-  Carousel(
+  ConnectisCarouselScrollCard(
       {this.key,
       required this.height,
       required this.width,
@@ -110,11 +110,12 @@ class Carousel extends StatefulWidget {
   }
   @override
   createState() {
-    return _CarouselState();
+    return _ConnectisCarouselScrollCardState();
   }
 }
 
-class _CarouselState extends State<Carousel> {
+class _ConnectisCarouselScrollCardState
+    extends State<ConnectisCarouselScrollCard> {
   int position = 0;
   double? animatedFactor;
   double? offset;
@@ -285,7 +286,7 @@ class _CarouselState extends State<Carousel> {
     ));
   }
 
-  _getCarousel(Carousel widget) {
+  _getCarousel(ConnectisCarouselScrollCard widget) {
     dynamic carousel;
     dynamic type = widget.type.runtimeType == Types
         ? widget.type
