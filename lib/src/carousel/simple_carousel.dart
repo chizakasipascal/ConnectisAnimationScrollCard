@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class SimpleCarousel extends StatelessWidget {
-  Widget carouserBuilder;
-  int currentPage;
+  Widget? carouserBuilder;
+  int? currentPage;
   bool initial = true;
   final dynamic props;
 
-  SimpleCarousel(this.props);
+  SimpleCarousel(this.props, {Key? key}) : super(key: key);
 
   initiate(index) {
-    double value;
+    double? value;
     if (index == currentPage && initial) value = 0.0;
     initial = false;
-    return value;
+    return value!;
   }
 
   @override
   Widget build(BuildContext context) {
     initial = true;
     currentPage = 0;
-    carouserBuilder = new PageView.builder(
+    carouserBuilder = PageView.builder(
         scrollDirection: props.axis,
         controller: props.controller,
         itemCount: props.children.length,
@@ -32,10 +32,10 @@ class SimpleCarousel extends StatelessWidget {
           }
         },
         itemBuilder: (context, index) => builder(index, props.controller));
-    return new Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        new Container(
+        Container(
           color: Colors.transparent,
           height: props.height,
           width: props.width,
@@ -51,7 +51,7 @@ class SimpleCarousel extends StatelessWidget {
 
   builder(int index, PageController controller1) {
     initial = true;
-    return new AnimatedBuilder(
+    return AnimatedBuilder(
       animation: controller1,
       builder: (context, child) {
         double value = 1.0;
@@ -60,18 +60,18 @@ class SimpleCarousel extends StatelessWidget {
                 // controller1?.page - index
                 // 3
                 0
-            : controller1.page - index;
+            : controller1.page! - index;
         value = (1 - (value.abs())).clamp(0.0, 1.0);
 
-        return new Column(
+        return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Opacity(
-              opacity: math.pow(value, 1.2),
+            Opacity(
+              opacity: math.pow(value, 1.2).toDouble(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  new Container(
+                  SizedBox(
                     height: (props.height) * math.pow(value, 5),
                     width: (props.width) * math.pow(value, 5),
                     child: props.children[index],

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class ZcarouselState extends StatelessWidget {
-  int currentPage;
-  bool initial = true;
+  int? currentPage;
+  bool? initial = true;
   final dynamic props;
 
   ZcarouselState(
@@ -13,17 +13,17 @@ class ZcarouselState extends StatelessWidget {
   }
 
   initiate(index) {
-    double value;
-    if (index == currentPage && initial) value = 0.0;
+    double? value;
+    if (index == currentPage && initial!) value = 0.0;
     initial = false;
-    return value;
+    return value!;
   }
 
   @override
   Widget build(BuildContext context) {
     int count = props.children.length;
 
-    Widget carouselBuilder = new PageView.builder(
+    Widget carouselBuilder = PageView.builder(
         controller: props.controller,
         scrollDirection: props.axis,
         itemCount: count,
@@ -36,7 +36,7 @@ class ZcarouselState extends StatelessWidget {
         },
         itemBuilder: (context, index) => builder(index));
     return Center(
-      child: new Container(
+      child: SizedBox(
         height: props.height,
         width: props.width,
         child: props.axis == Axis.horizontal
@@ -50,7 +50,7 @@ class ZcarouselState extends StatelessWidget {
 
   builder(int index) {
     Matrix4 _pmat(num pv) {
-      return new Matrix4(
+      return Matrix4(
         1.0, 0.0, 0.0, 0.0, //
         0.0, 1.0, 0.0, 0.0, //
         0.0, 0.0, 1.0, pv * 0.001, //
@@ -59,33 +59,33 @@ class ZcarouselState extends StatelessWidget {
     }
 
     Matrix4 perspective = _pmat(1.0);
-    return new AnimatedBuilder(
+    return AnimatedBuilder(
       animation: props.controller,
       builder: (context, child) {
         double value = 1.0;
-        value = initial
+        value = initial!
             ? initiate(index) ??
                 // props.controller.page - index
                 0
             : value = props.controller.page - index;
         value = (1 - (value.abs() * 0.2)).clamp(0.0, 1.0);
-        return new Column(
+        return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            new Transform(
+            Transform(
               alignment: FractionalOffset.center,
               transform: perspective.scaled(1.0, 1.0, 1.0)
                 ..rotateX(0.0)
                 ..rotateY(((value) * 3393) / 90)
                 ..rotateZ(0.0),
-              child: new Opacity(
-                opacity: math.pow(value, 2),
-                child: new Material(
-                  borderRadius: new BorderRadius.circular(
+              child: Opacity(
+                opacity: math.pow(value, 2).toDouble(),
+                child: Material(
+                  borderRadius: BorderRadius.circular(
                       (5 - ((1.0 - value) * 25)).clamp(0.1, 5.0)),
                   elevation: (value > 0.9 ? 50.0 : 0.0),
-                  child: new Container(
+                  child: SizedBox(
                     height: props.height * value,
                     width: props.width * value,
                     child: props.children[index],

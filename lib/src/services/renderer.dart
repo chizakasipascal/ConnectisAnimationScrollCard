@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
 typedef OnCall = Function(bool);
-typedef Widget Builder(OnCall rebuild, bool active);
+typedef Builder = Widget Function(OnCall rebuild, bool active);
 
 class Renderer extends StatefulWidget {
   final Builder builder;
+  @override
   final Key key;
-  Renderer(this.key, this.builder) : super(key: key);
+  const Renderer(this.key, this.builder) : super(key: key);
 
   @override
   RendererState createState() => RendererState();
 }
 
 class RendererState extends State<Renderer> {
-  int data;
-  bool active;
+  late int data;
+  late bool active;
 
   @override
   initState() {
@@ -22,7 +23,7 @@ class RendererState extends State<Renderer> {
     active = false;
   }
 
-  updateRenderer(bool status, [String a]) {
+  updateRenderer(bool status, [String? a]) {
     setState(() {
       active = status;
     });
