@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class SlideSwipe extends StatelessWidget {
   int? currentPage;
   bool? initial;
-  final Carousel props;
+  final ConnectisCarouselScrollCard props;
 
   SlideSwipe(this.props, {Key? key}) : super(key: key);
 
