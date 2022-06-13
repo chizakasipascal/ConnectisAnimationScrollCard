@@ -35,6 +35,7 @@ class SlideSwipe extends StatelessWidget {
         controller: props.controller,
         itemCount: count,
         onPageChanged: (i) {
+          print('Update $i');
           props.updatePositionCallBack(i);
           if (props.onPageChange != null) {
             props.onPageChange(i);
