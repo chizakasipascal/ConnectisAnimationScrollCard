@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class MultiAxisCarouselState extends StatelessWidget {
-  int currentPage;
+  int? currentPage;
   bool initial = true;
-  final dynamic props;
+  late dynamic? props;
 
-  MultiAxisCarouselState(this.props) {
+  MultiAxisCarouselState(this.props, {Key? key}) : super(key: key) {
     currentPage = 0;
   }
 
   initiate(index) {
-    double value;
+    double? value;
     if (index == currentPage && initial) value = 0.0;
     initial = false;
     return value;
@@ -20,7 +20,7 @@ class MultiAxisCarouselState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int count = props.children.length;
-    Widget carouselBuilder = new PageView.builder(
+    Widget carouselBuilder = PageView.builder(
         controller: props.controller,
         scrollDirection: props.axis,
         itemCount: count,
@@ -33,7 +33,7 @@ class MultiAxisCarouselState extends StatelessWidget {
         },
         itemBuilder: (context, index) => builder(index, props.controller));
     return Center(
-      child: Container(
+      child: SizedBox(
         height: props.height,
         width: props.width,
         child: props.axis == Axis.horizontal
@@ -78,7 +78,7 @@ class MultiAxisCarouselState extends StatelessWidget {
                   ..rotateY(((value) * 3393) / 90)
                   ..rotateZ(0.0),
                 child: Opacity(
-                  opacity: math.pow(value, 4),
+                  opacity: math.pow(value, 4).toDouble(),
                   child: Container(
                     color: Colors.green,
                     height: props.height * value,
