@@ -26,10 +26,10 @@ class ConnectisCarouselScrollCard extends StatefulWidget {
   /// This feild is required.
   ///
   /// Defines the height of the Carousel
-  final double height;
+  final double? height;
 
   /// Defines the width of the Carousel
-  final double width;
+  final double? width;
 
   final List<Widget> children;
 
@@ -81,8 +81,8 @@ class ConnectisCarouselScrollCard extends StatefulWidget {
 
   ConnectisCarouselScrollCard(
       {this.key,
-      required this.height,
-      required this.width,
+      this.height,
+      this.width,
       required this.controller,
       @required this.type,
       this.axis,
@@ -119,10 +119,9 @@ class _ConnectisCarouselScrollCardState
   final GlobalKey<RendererState> rendererKey2 = GlobalKey();
   @override
   void initState() {
-    // TODO: implement initState
     widget.updatePositionCallBack = updatePosition;
     widget.controller = PageController();
-    print('init page controller');
+    debugPrint('init page controller');
     super.initState();
   }
 
@@ -231,7 +230,7 @@ class _ConnectisCarouselScrollCardState
                                     scrollPosition(updateRender, function: f);
                                   },
                                   child: Container(
-                                    height: widget.height / 2,
+                                    height: widget.height! / 2,
                                     width: 40.0,
                                     color: active
                                         ? const Color(0x77121212)
