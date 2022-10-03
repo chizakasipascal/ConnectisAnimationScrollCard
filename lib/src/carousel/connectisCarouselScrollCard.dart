@@ -1,11 +1,7 @@
 library carousel;
 
-import 'package:connectisanimationscrollcard/src/carousel/multi_axis_carousel.dart';
-import 'package:connectisanimationscrollcard/src/carousel/rotatingcarousel.dart';
 import 'package:connectisanimationscrollcard/src/carousel/simple_carousel.dart';
 import 'package:connectisanimationscrollcard/src/carousel/slide_swipe.dart';
-import 'package:connectisanimationscrollcard/src/carousel/x_rotating_carousel.dart';
-import 'package:connectisanimationscrollcard/src/carousel/zrotatingcarousel.dart';
 import 'package:connectisanimationscrollcard/src/indicator/index.dart';
 import 'package:connectisanimationscrollcard/src/services/renderer.dart';
 import 'package:connectisanimationscrollcard/src/services/screen_ratio.dart';
@@ -305,30 +301,6 @@ class _ConnectisCarouselScrollCardState
           carousel = SlideSwipe(widget);
         }
         break;
-
-      case Types.xRotating:
-        {
-          carousel = XcarouselState(widget);
-        }
-        break;
-      case Types.yRotating:
-        {
-          carousel = RotatingCarouselState(widget);
-        }
-        break;
-      case Types.zRotating:
-        {
-          carousel = ZcarouselState(widget);
-        }
-        break;
-      case Types.multiRotating:
-        {
-          carousel = MultiAxisCarouselState(widget);
-        }
-        break;
-      // default:
-      //   carousel = SimpleCarousel(widget);
-      //   break;
     }
     return carousel;
   }
@@ -337,35 +309,9 @@ class _ConnectisCarouselScrollCardState
 _getType(String type) {
   switch (type) {
     case "simple":
-      {
-        return Types.simple;
-      }
-      break;
-    case "slideswiper":
-      {
-        return Types.slideSwiper;
-      }
-      break;
+      return Types.simple;
 
-    case "xrotating":
-      {
-        return Types.xRotating;
-      }
-      break;
-    case "yrotating":
-      {
-        return Types.yRotating;
-      }
-      break;
-    case "zrotating":
-      {
-        return Types.zRotating;
-      }
-      break;
-    case "multirotating":
-      {
-        return Types.multiRotating;
-      }
-      break;
+    case "slideswiper":
+      return Types.slideSwiper;
   }
 }

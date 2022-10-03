@@ -13,7 +13,7 @@ class SlideSwipe extends StatelessWidget {
     try {
       currentPage = props.controller.initialPage.round();
     } catch (e) {
-      print("exception here => $e");
+      debugPrint("exception here => $e");
     }
     double? value;
     if (index == currentPage! - 1 && initial!) value = 1.0;
