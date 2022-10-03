@@ -78,21 +78,13 @@ Widget getIndicator(
 IndicatorTypes? _getIndicatorType(String indicatorName) {
   switch (indicatorName) {
     case "bar":
-      {
-        return IndicatorTypes.bar;
-      }
-      break;
+      return IndicatorTypes.bar;
+
     case "bubble":
-      {
-        return IndicatorTypes.bubble;
-      }
-      break;
+      return IndicatorTypes.bubble;
+
     case "dot":
-      {
-        return IndicatorTypes.dot;
-      }
-      break;
-    default:
-      return null;
+      return IndicatorTypes.dot;
   }
+  return null;
 }

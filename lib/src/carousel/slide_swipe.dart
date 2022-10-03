@@ -35,7 +35,7 @@ class SlideSwipe extends StatelessWidget {
         controller: props.controller,
         itemCount: count,
         onPageChanged: (i) {
-          print('Update $i');
+          debugPrint('Update $i');
           props.updatePositionCallBack(i);
           if (props.onPageChange != null) {
             props.onPageChange(i);
@@ -75,12 +75,12 @@ class SlideSwipe extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: Container(
-                  height: (props.height -
+                  height: (props.height! -
                           (props.axis == Axis.vertical
-                              ? props.height / 5
+                              ? props.height! / 5
                               : 0.0)) *
                       (props.axis == Axis.vertical ? 1.0 : value),
-                  width: props.width * value,
+                  width: props.width! * value,
                   alignment: Alignment.center,
                   child: props.children[index],
                 ),
